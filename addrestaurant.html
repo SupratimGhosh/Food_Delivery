@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Restaurant</title>
+    <style>
+        /* Basic styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f8f8f8;
+        }
+        .add-restaurant-container {
+            width: 100%;
+            max-width: 500px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .add-restaurant-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .add-restaurant-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        .add-restaurant-container input,
+        .add-restaurant-container select,
+        .add-restaurant-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .add-restaurant-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff4c4c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .add-restaurant-container button:hover {
+            background-color: #e04444;
+        }
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .add-restaurant-container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="add-restaurant-container">
+    <h2>Add a Restaurant</h2>
+    <form action="submit-restaurant.html" method="POST" enctype="multipart/form-data">
+        <label for="name">Restaurant Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="address">Address</label>
+        <textarea id="address" name="address" rows="3" required></textarea>
+
+        <label for="cuisine">Cuisine Type</label>
+        <select id="cuisine" name="cuisine" required>
+            <option value="">Select Cuisine</option>
+            <option value="Italian">Italian</option>
+            <option value="Chinese">Chinese</option>
+            <option value="Indian">Indian</option>
+            <option value="Mexican">Mexican</option>
+            <!-- Add more options as needed -->
+        </select>
+
+        <label for="image">Restaurant Image</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
+
+        <button type="submit">Add Restaurant</button>
+    </form>
+</div>
+
+</body>
+</html>

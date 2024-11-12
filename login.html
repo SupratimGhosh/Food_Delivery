@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login with OTP</title>
+    <style>
+        /* Basic styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f8f8f8;
+        }
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .login-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .login-container input:focus {
+            border-color: #ff4c4c;
+            box-shadow: 0 0 5px rgba(255, 76, 76, 0.2);
+            outline: none;
+        }
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff4c4c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .login-container button:hover {
+            background-color: #ff3333;
+        }
+        .login-container p {
+            text-align: center;
+            margin-top: 10px;
+            color: red;
+        }
+    </style>
+    </head>
+
+    <body>
+
+    <div class="login-container">
+        <h2>Log In</h2>
+        <form id="login-form" onsubmit="return verifyOTP(event)">
+            <label for="phone">Mobile Number</label>
+            <input type="tel" id="phone" name="phone" required placeholder="Enter your mobile number" pattern="[0-9]{10}">
+            
+            <button type="button" onclick="checkPhoneNumber()">Generate OTP</button>
+            
+            
+            <div id="otp-container" style="display: none;">
+                <label for="otp">Enter OTP</label>
+                <input type="text" id="otp" name="otp" placeholder="Enter OTP">
+                <p id="error-message"></p> 
+                <button type="submit">Verify OTP</button>
+            </div>
+        </form>
+    </div>
+
+        
+        <script>
+            
+            let generatedOTP;
+
+            function checkPhoneNumber() {
+                
+                const phone = document.getElementById('phone').value;
+                if (phone.match(/^[0-9]{10}$/)) { 
+                    fetch(`verifyNumber.jsp?phone=${phone}`)
+                        .then(response => response.text()) // Read the response as plain text
+                        .then(data => {
+                            //alert(data);
+                            if (data.trim() === "exists") {
+                                // Phone number exists, proceed with OTP generation
+                                
+                                generateOTP();
+                            } else {
+                                // Phone number does not exist, redirect to signup page
+                                window.location.href = 'signup.html';
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                }
+                else {
+                    alert("Please enter a valid 10-digit mobile number.");
+                }
+            }
+        
+            function generateOTP() {
+                    // Generate a 4-digit random OTP if the number exists
+                    generatedOTP = Math.floor(1000 + Math.random() * 9000);
+                    alert("Your OTP is: " + generatedOTP); // Display OTP in an alert
+                    
+                    // Show the OTP input field
+                    document.getElementById('otp-container').style.display = 'block';
+                    document.getElementById('error-message').textContent = ''; // Clear any previous error message
+            }
+        
+            function verifyOTP(event) {
+                event.preventDefault(); // Prevent form submission
+        
+                const enteredOTP = document.getElementById('otp').value;
+                const errorMessage = document.getElementById('error-message');
+        
+                if (enteredOTP == generatedOTP) {
+                    // Redirect to index.jsp if OTP matches
+                    window.location.href = 'index.jsp';
+                } else {
+                    // Display error message if OTP does not match
+                    errorMessage.textContent = 'OTP mismatch. Please try again.';
+                }
+            }
+        </script>
+        
+        </body>
+    
+</html>

@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    padding: 20px 0;
+    background-color: #ff4c4c;
+    color: #fff;
+    text-align: center;
+}
+
+.logo img {
+    width: 150px;
+}
+
+.nav {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.search input {
+    width: 100%;
+    max-width: 600px;
+    padding: 10px;
+    margin: 20px auto;
+    display: block;
+    border-radius: 5px;
+    border: none;
+}
+
+.categories {
+    padding: 20px;
+    background-color: #f8f8f8;
+}
+
+.categories h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.category-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.category {
+    padding: 10px 20px;
+    background-color: #ff4c4c;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.restaurants {
+    padding: 20px;
+    text-align: center;
+}
+
+.restaurant-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.restaurant-card {
+    width: 100%;
+    max-width: 300px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+}
+
+.restaurant-card img {
+    width: 100%;
+}
+
+.restaurant-card h3 {
+    padding: 10px 0;
+    color: #333;
+}
+
+footer {
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    margin-top: auto;
+}
+
+.cart-icon {
+    position: fixed;
+    right: 20px;
+    top: 10%;
+    transform: translateY(-50%);
+    padding: 10px;
+    background-color: #f1f1f1; /* Optional background */
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.cart-icon img {
+    width: 30px; /* Set the size of the icon */
+    height: 30px;
+}
+
+.cart-icon:hover {
+    background-color: #ccc; /* Hover effect */
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .search input {
+        width: 80%;
+    }
+    .nav {
+        flex-direction: column;
+    }
+    .category-grid, .restaurant-grid {
+        flex-direction: column;
+    }
+}
